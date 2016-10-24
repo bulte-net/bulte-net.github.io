@@ -64,11 +64,11 @@ function playBlock(block) {
       if (idx === nodes.length - 1) {
         showQuestions()
       }
+      var actor = theater.getCurrentActor().$element.scrollIntoView()
       done()
     })
     node.innerHTML = ''
     document.querySelector('#player').appendChild(node)
-    node.scrollIntoView()
   })
 }
 
