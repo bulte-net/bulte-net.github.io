@@ -24,7 +24,7 @@ function showQuestions() {
   var button
   var questions = document.createElement('div')
   blocks.forEach(function (block) {
-    if (playedBlocks.indexOf(block) === -1) {
+    if (playedBlocks.indexOf(block.name) === -1) {
       button = document.createElement('button')
       button.innerHTML = block.title
       button.onclick = function () { goTo(block) }
@@ -44,10 +44,10 @@ function goTo(block) {
 function playBlock(block) {
   console.log('playBlock', block)
   playedBlocks.push(block)
-  var selector = '.me[block="' + block + '"]'
+  var selector = 'div[block="' + block + '"]'
   document.querySelectorAll(selector).forEach(function (node, idx, nodes) {
     var actor = block + '-' + node.attributes.step.value
-    var actorSelector = '.me[step="' + node.attributes.step.value + '"][' + 'block="' + block + '"]'
+    var actorSelector = 'div[step="' + node.attributes.step.value + '"][' + 'block="' + block + '"]'
     theater.addActor(actor, {accuracy: 0.8, speed: 1.0}, actorSelector)
     theater.addScene(actor + ':' + node.innerHTML)
     theater.addScene(function (done) {
