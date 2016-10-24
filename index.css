@@ -1,19 +1,21 @@
 body {
   background-color: grey;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: 300;
+}
+
+b, strong {
+  font-weight: 700;
 }
 
 #configuration {
   display: none
 }
 
-.answered {
-  text-align: right;
-}
-
 .conversation {
   max-width: 400px;
   background-color: white;
-  height: 500px;
+  height: auto;
   width: auto;
   margin-top: 50px;
   margin-left: auto;
@@ -28,4 +30,48 @@ body {
 .is-typing::after {
   content: '|';
   animation: blink 500ms infinite;
+}
+
+.me {
+  margin-left: 5px;
+  line-height: 60px;
+  background-image: url('avatar.png');
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: 40px;
+  padding-left: 50px;
+}
+
+.questions {
+  line-height: 60px;
+  text-align: center;
+}
+
+.questions > button, .answered > span {
+  font-weight: 300;
+  background-color: #D52B2E;
+  border: 1px solid #BC1215;
+  cursor: pointer;
+  color: #ffffff;
+  text-decoration: none;
+  padding: 10px;
+  font-size: 14px;
+}
+.questions > button:hover {
+  background-color: #EF4548;
+}
+.questions > button:active {
+  position:relative;
+  top:1px;
+}
+.questions > button:not(:last-child){
+  margin-right: 5px;
+}
+.answered > span {
+  margin-right: 5px;
+  cursor: auto;
+}
+
+.questions.answered {
+  text-align: right;
 }

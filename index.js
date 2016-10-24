@@ -23,6 +23,7 @@ theater
 function showQuestions() {
   var button
   var questions = document.createElement('div')
+  questions.classList.add('questions')
   blocks.forEach(function (block) {
     if (playedBlocks.indexOf(block.name) === -1) {
       button = document.createElement('button')
@@ -32,24 +33,33 @@ function showQuestions() {
     }
   })
   document.querySelector('#player').appendChild(questions)
+  questions.scrollIntoView()
   currentQuestions = questions
 }
 
 function goTo(block) {
-  currentQuestions.innerHTML = block.title
+  var span = document.createElement('span')
+  span.innerHTML = block.title
+  while (currentQuestions.firstChild) {
+      currentQuestions.removeChild(currentQuestions.firstChild)
+  }
+  currentQuestions.appendChild(span)
   currentQuestions.classList.add('answered')
   playBlock(block.name)
 }
 
 function playBlock(block) {
-  console.log('playBlock', block)
   playedBlocks.push(block)
   var selector = 'div[block="' + block + '"]'
   document.querySelectorAll(selector).forEach(function (node, idx, nodes) {
     var actor = block + '-' + node.attributes.step.value
     var actorSelector = 'div[step="' + node.attributes.step.value + '"][' + 'block="' + block + '"]'
     theater.addActor(actor, {accuracy: 0.8, speed: 1.0}, actorSelector)
-    theater.addScene(actor + ':' + node.innerHTML)
+    var text = node.innerHTML
+    theater.addScene(actor + ':' + text)
+    if (idx === 0 && block === 'start') {
+      theater.addScene(1000)
+    }
     theater.addScene(function (done) {
       if (idx === nodes.length - 1) {
         showQuestions()
@@ -58,8 +68,8 @@ function playBlock(block) {
     })
     node.innerHTML = ''
     document.querySelector('#player').appendChild(node)
+    node.scrollIntoView()
   })
 }
 
 playBlock('start')
-
