@@ -1,0 +1,31 @@
+body {
+  background-color: grey;
+}
+
+#configuration {
+  display: none
+}
+
+.answered {
+  text-align: right;
+}
+
+.conversation {
+  max-width: 400px;
+  background-color: white;
+  height: 500px;
+  width: auto;
+  margin-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@keyframes blink {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.is-typing::after {
+  content: '|';
+  animation: blink 500ms infinite;
+}

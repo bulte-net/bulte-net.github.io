@@ -1,0 +1,14 @@
+{
+  "name": "conversation",
+  "version": "1.0.0",
+  "description": "Alexandre Bulté talking to the world.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Alexandre Bulté",
+  "license": "MIT",
+  "dependencies": {
+    "theaterjs": "^3.0.0"
+  }
+}
