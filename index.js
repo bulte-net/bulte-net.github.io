@@ -13,6 +13,7 @@ theater
     // add a class to actor's dom element when he starts typing/erasing
     var actor = theater.getCurrentActor()
     actor.$element.classList.add('is-typing')
+    theater.getCurrentActor().$element.scrollIntoView()
   })
   .on('type:end, erase:end', function () {
     // and then remove it when he's done
@@ -64,7 +65,6 @@ function playBlock(block) {
       if (idx === nodes.length - 1) {
         showQuestions()
       }
-      var actor = theater.getCurrentActor().$element.scrollIntoView()
       done()
     })
     node.innerHTML = ''
