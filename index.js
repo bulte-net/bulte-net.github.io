@@ -56,7 +56,8 @@ function playBlock(block) {
     var actor = block + '-' + node.attributes.step.value
     var actorSelector = 'div[step="' + node.attributes.step.value + '"][' + 'block="' + block + '"]'
     theater.addActor(actor, {accuracy: 0.8, speed: 1.0}, actorSelector)
-    var text = node.innerHTML
+    // add a span to prevent display: flex from fucking things over
+    var text = '<span>' + node.innerHTML + '</span>'
     theater.addScene(actor + ':' + text)
     if (idx === 0 && block === 'start') {
       theater.addScene(1000)
