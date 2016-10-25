@@ -36,6 +36,7 @@ b, strong {
   display: flex;
   align-items: center;
   margin-left: 5px;
+  margin-right: 5px;
   height: 60px;
   background-image: url('avatar.png');
   background-repeat: no-repeat;
