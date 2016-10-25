@@ -14,6 +14,7 @@ theater
     var actor = theater.getCurrentActor()
     actor.$element.classList.add('is-typing')
     theater.getCurrentActor().$element.scrollIntoView()
+    theater.getCurrentActor().$element.style.height = '60px'
   })
   .on('type:end, erase:end', function () {
     // and then remove it when he's done
@@ -56,7 +57,7 @@ function playBlock(block) {
     var actor = block + '-' + node.attributes.step.value
     var actorSelector = 'div[step="' + node.attributes.step.value + '"][' + 'block="' + block + '"]'
     theater.addActor(actor, {accuracy: 0.8, speed: 1.0}, actorSelector)
-    // add a span to prevent display: flex from fucking things over
+    // add a span to let display:flex v-center stuff correctly
     var text = '<span>' + node.innerHTML + '</span>'
     theater.addScene(actor + ':' + text)
     if (idx === 0 && block === 'start') {

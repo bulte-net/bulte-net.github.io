@@ -37,7 +37,6 @@ b, strong {
   align-items: center;
   margin-left: 5px;
   margin-right: 5px;
-  height: 60px;
   background-image: url('avatar.png');
   background-repeat: no-repeat;
   background-position: left center;
@@ -46,7 +45,7 @@ b, strong {
 }
 
 .questions {
-  line-height: 60px;
+  height: 60px;
   text-align: center;
 }
 
