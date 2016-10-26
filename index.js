@@ -56,7 +56,7 @@ function playBlock(block) {
   document.querySelectorAll(selector).forEach(function (node, idx, nodes) {
     var actor = block + '-' + node.attributes.step.value
     var actorSelector = 'div[step="' + node.attributes.step.value + '"][' + 'block="' + block + '"]'
-    theater.addActor(actor, {accuracy: 0.8, speed: 1.0}, actorSelector)
+    theater.addActor(actor, {accuracy: 0.7, speed: 1.0}, actorSelector)
     // add a span to let display:flex v-center stuff correctly
     var text = '<span>' + node.innerHTML + '</span>'
     theater.addScene(actor + ':' + text)
