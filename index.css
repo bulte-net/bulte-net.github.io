@@ -27,6 +27,11 @@ b, strong {
   to { opacity: 1; }
 }
 
+@keyframes blink-full {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 .is-typing > span::after {
   content: '|';
   animation: blink 500ms infinite;
@@ -76,4 +81,9 @@ b, strong {
 
 .questions.answered {
   text-align: right;
+}
+
+.blinking-intro::after {
+  content: '...';
+  animation: blink-full 800ms infinite;
 }

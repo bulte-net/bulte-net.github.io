@@ -1,3 +1,5 @@
+const BUBBLE_HEIGHT = '60px'
+
 var currentQuestions
 var playedBlocks = []
 var blocks = [
@@ -14,7 +16,7 @@ theater
     var actor = theater.getCurrentActor()
     actor.$element.classList.add('is-typing')
     theater.getCurrentActor().$element.scrollIntoView()
-    theater.getCurrentActor().$element.style.height = '60px'
+    theater.getCurrentActor().$element.style.height = BUBBLE_HEIGHT
   })
   .on('type:end, erase:end', function () {
     // and then remove it when he's done
@@ -59,16 +61,33 @@ function playBlock(block) {
     theater.addActor(actor, {accuracy: 0.7, speed: 1.0}, actorSelector)
     // add a span to let display:flex v-center stuff correctly
     var text = '<span>' + node.innerHTML + '</span>'
-    theater.addScene(actor + ':' + text)
-    if (idx === 0 && block === 'start') {
-      theater.addScene(1000)
+    var isFirstScene = (idx === 0 && block === 'start')
+    // weird hack to add blinking (...)
+    // first an empty string w/ actor to allow getCurrentActor()
+    // and then set height manually to make it appear
+    // finally we can launch our animation by adding a class
+    if (isFirstScene) {
+      theater.addScene(actor + ':')
+      theater.addScene(function (done) {
+        console.log('Start')
+        theater.getCurrentActor().$element.style.height = BUBBLE_HEIGHT
+        theater.getCurrentActor().$element.classList.add('blinking-intro')
+        setTimeout(function() {
+          theater.getCurrentActor().$element.classList.remove('blinking-intro')
+          done()
+        }, 3000);
+      })
     }
+    // add main text from configuration node
+    theater.addScene(actor + ':' + text)
+    // add a delay after very first sentence
+    if (isFirstScene) theater.addScene(1000)
+    // show questions when a block is over
     theater.addScene(function (done) {
-      if (idx === nodes.length - 1) {
-        showQuestions()
-      }
+      if (idx === nodes.length - 1) showQuestions()
       done()
     })
+    // erase the configuration text before displaying the node
     node.innerHTML = ''
     document.querySelector('#player').appendChild(node)
   })
