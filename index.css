@@ -1,5 +1,5 @@
 body {
-  background-color: grey;
+  background-color: #eee;
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   font-weight: 300;
 }
@@ -14,7 +14,6 @@ b, strong {
 
 .conversation {
   max-width: 400px;
-  background-color: white;
   height: auto;
   width: auto;
   margin-top: 50px;
@@ -37,24 +36,34 @@ b, strong {
   animation: blink 500ms infinite;
 }
 
-.me {
-  display: flex;
+.me, .questions {
+  border-radius: 5px;
+  margin-bottom: 10px;
   align-items: center;
-  margin-left: 5px;
-  margin-right: 5px;
+  display: flex;
+}
+
+.me {
+  background-color: white;
   background-image: url('avatar.png');
   background-repeat: no-repeat;
-  background-position: left center;
+  background-position: 5px center;
   background-size: 40px;
-  padding-left: 50px;
+  padding-left: 55px;
+  height: 60px;
+  box-shadow: 2px 2px #ccc;
+}
+.me > span {
+  margin-right: 5px;
 }
 
 .questions {
   height: 60px;
   text-align: center;
+  margin-bottom: 20px;
 }
 
-.questions > button, .answered > span {
+.questions button, .answered > span {
   font-weight: 300;
   background-color: #D52B2E;
   border: 1px solid #BC1215;
@@ -64,25 +73,23 @@ b, strong {
   padding: 10px;
   font-size: 14px;
 }
-.questions > button:hover {
+.questions button:hover {
   background-color: #EF4548;
 }
-.questions > button:active {
+.questions button:active {
   position:relative;
   top:1px;
 }
-.questions > button:not(:last-child){
+.questions button:not(:last-child){
   margin-right: 5px;
+}
+.questions > div {
+  margin: auto;
 }
 .answered > span {
   margin-right: 5px;
   cursor: auto;
   margin-left: auto;
-}
-
-.questions.answered {
-  align-items: center;
-  display: flex;
 }
 
 .blinking-intro::after {

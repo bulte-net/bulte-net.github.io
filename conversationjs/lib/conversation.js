@@ -77,9 +77,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var _this = this;
 	
 	    var typeDelay = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [50, 100];
+	    var animationClass = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 'fadeInDown';
 	
 	    _classCallCheck(this, Conversation);
 	
+	    this.animationClass = animationClass;
 	    this.typeDelay = typeDelay;
 	    this.config = document.querySelector(configSelector);
 	    this.player = document.querySelector(playerSelector);
@@ -96,16 +98,23 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	
 	  _createClass(Conversation, [{
+	    key: '_addClasses',
+	    value: function _addClasses(element, classes) {
+	      classes.forEach(function (cssClass) {
+	        element.classList.add(cssClass);
+	      });
+	    }
+	  }, {
 	    key: '_answer',
 	    value: function _answer(block) {
 	      this.questions.remove();
 	      var answer = document.createElement('div');
-	      answer.classList.add('questions');
-	      answer.classList.add('answered');
+	      this._addClasses(answer, ['questions', 'answered']);
 	      var inner = document.createElement('span');
 	      inner.innerHTML = block.title;
 	      answer.appendChild(inner);
 	      this.player.appendChild(answer);
+	      this._addClasses(answer, ['animated', 'fadeInLeft']);
 	      this._playBlock(block);
 	    }
 	  }, {
@@ -116,16 +125,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	      if (blocks.length === 0) return;
 	      this.questions = document.createElement('div');
 	      this.questions.classList.add('questions');
+	      var questionsInner = document.createElement('div');
+	      this.questions.appendChild(questionsInner);
 	      blocks.forEach(function (block) {
 	        var button = document.createElement('button');
 	        button.innerHTML = block.title;
 	        button.onclick = function () {
 	          _this2._answer(block);
 	        };
-	        _this2.questions.appendChild(button);
+	        questionsInner.appendChild(button);
 	      });
 	      this.player.appendChild(this.questions);
-	      this.questions.scrollIntoView();
+	      this.questions.scrollIntoView({ behavior: 'smooth' });
+	      this._addClasses(this.questions, ['animated', 'fadeInUp']);
 	    }
 	  }, {
 	    key: '_getTypeDelay',
@@ -156,7 +168,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return doneCallback();
 	      }
 	      var sentence = sentences.shift();
-	      sentence.style.height = '60px';
 	      // inject a span to allow flexbox centering
 	      var text = '<span>' + sentence.innerHTML + '</span>';
 	      var htmlMap = _html2.default.map(text);
@@ -169,7 +180,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	      });
 	      sentence.classList.add('is-typing');
 	      this.player.appendChild(sentence);
-	      sentence.scrollIntoView();
+	      sentence.scrollIntoView({ behavior: 'smooth' });
+	      // flipInX
+	      this._addClasses(sentence, ['animated', this.animationClass]);
 	    }
 	  }, {
 	    key: '_playBlock',

@@ -1,7 +1,8 @@
 import html from './html'
 
 export default class Conversation {
-  constructor (configSelector, playerSelector, typeDelay = [50, 100]) {
+  constructor (configSelector, playerSelector, typeDelay = [50, 100], animationClass = 'fadeInDown') {
+    this.animationClass = animationClass
     this.typeDelay = typeDelay
     this.config = document.querySelector(configSelector)
     this.player = document.querySelector(playerSelector)
@@ -17,15 +18,21 @@ export default class Conversation {
     })
   }
 
+  _addClasses (element, classes) {
+    classes.forEach(cssClass => {
+      element.classList.add(cssClass)
+    })
+  }
+
   _answer (block) {
     this.questions.remove()
     let answer = document.createElement('div')
-    answer.classList.add('questions')
-    answer.classList.add('answered')
+    this._addClasses(answer, ['questions', 'answered'])
     let inner = document.createElement('span')
     inner.innerHTML = block.title
     answer.appendChild(inner)
     this.player.appendChild(answer)
+    this._addClasses(answer, ['animated', 'fadeInLeft'])
     this._playBlock(block)
   }
 
@@ -33,14 +40,17 @@ export default class Conversation {
     if (blocks.length === 0) return
     this.questions = document.createElement('div')
     this.questions.classList.add('questions')
+    let questionsInner = document.createElement('div')
+    this.questions.appendChild(questionsInner)
     blocks.forEach(block => {
       let button = document.createElement('button')
       button.innerHTML = block.title
       button.onclick = () => { this._answer(block) }
-      this.questions.appendChild(button)
+      questionsInner.appendChild(button)
     })
     this.player.appendChild(this.questions)
-    this.questions.scrollIntoView()
+    this.questions.scrollIntoView({behavior: 'smooth'})
+    this._addClasses(this.questions, ['animated', 'fadeInUp'])
   }
 
   _getTypeDelay () {
@@ -64,7 +74,6 @@ export default class Conversation {
       return doneCallback()
     }
     let sentence = sentences.shift()
-    sentence.style.height = '60px'
     // inject a span to allow flexbox centering
     let text = `<span>${sentence.innerHTML}</span>`
     let htmlMap = html.map(text)
@@ -77,7 +86,9 @@ export default class Conversation {
     })
     sentence.classList.add('is-typing')
     this.player.appendChild(sentence)
-    sentence.scrollIntoView()
+    sentence.scrollIntoView({behavior: 'smooth'})
+    // flipInX
+    this._addClasses(sentence, ['animated', this.animationClass])
   }
 
   _playBlock (block) {
