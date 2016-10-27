@@ -49,12 +49,12 @@ b, strong {
   background-repeat: no-repeat;
   background-position: 5px center;
   background-size: 40px;
-  padding-left: 55px;
-  height: 60px;
+  padding-left: 50px;
+  min-height: 60px;
   box-shadow: 2px 2px #ccc;
 }
 .me > span {
-  margin-right: 5px;
+  margin: 5px;
 }
 
 .questions {
