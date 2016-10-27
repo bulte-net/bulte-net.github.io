@@ -8,7 +8,7 @@ var blocks = [
   {name: 'contact', title: 'Vous contacter'}
 ]
 
-var theater = theaterJS({ autoplay: true })
+var theater = theaterJS({ autoplay: true , locale: 'fr'})
 
 theater
   .on('type:start, erase:start', function () {

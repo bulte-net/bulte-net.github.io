@@ -77,10 +77,12 @@ b, strong {
 .answered > span {
   margin-right: 5px;
   cursor: auto;
+  margin-left: auto;
 }
 
 .questions.answered {
-  text-align: right;
+  align-items: center;
+  display: flex;
 }
 
 .blinking-intro::after {
