@@ -10,6 +10,5 @@
   "license": "MIT",
   "dependencies": {
     "normalize.css": "^5.0.0",
-    "theaterjs": "^3.0.0"
   }
 }
