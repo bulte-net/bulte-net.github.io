@@ -40,6 +40,7 @@ export default class Conversation {
       this.questions.appendChild(button)
     })
     this.player.appendChild(this.questions)
+    this.questions.scrollIntoView()
   }
 
   _getTypeDelay () {
@@ -63,6 +64,7 @@ export default class Conversation {
       return doneCallback()
     }
     let sentence = sentences.shift()
+    sentence.style.height = '60px'
     // inject a span to allow flexbox centering
     let text = `<span>${sentence.innerHTML}</span>`
     let htmlMap = html.map(text)
@@ -75,6 +77,7 @@ export default class Conversation {
     })
     sentence.classList.add('is-typing')
     this.player.appendChild(sentence)
+    sentence.scrollIntoView()
   }
 
   _playBlock (block) {

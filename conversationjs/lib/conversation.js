@@ -125,6 +125,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        _this2.questions.appendChild(button);
 	      });
 	      this.player.appendChild(this.questions);
+	      this.questions.scrollIntoView();
 	    }
 	  }, {
 	    key: '_getTypeDelay',
@@ -155,6 +156,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return doneCallback();
 	      }
 	      var sentence = sentences.shift();
+	      sentence.style.height = '60px';
 	      // inject a span to allow flexbox centering
 	      var text = '<span>' + sentence.innerHTML + '</span>';
 	      var htmlMap = _html2.default.map(text);
@@ -167,6 +169,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      });
 	      sentence.classList.add('is-typing');
 	      this.player.appendChild(sentence);
+	      sentence.scrollIntoView();
 	    }
 	  }, {
 	    key: '_playBlock',
