@@ -76,7 +76,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  function Conversation(configSelector, playerSelector) {
 	    var _this = this;
 	
-	    var typeDelay = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [50, 100];
+	    var typeDelay = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [25, 50];
 	    var animationClass = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 'fadeInDown';
 	
 	    _classCallCheck(this, Conversation);

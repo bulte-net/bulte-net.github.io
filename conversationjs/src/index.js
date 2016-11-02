@@ -1,7 +1,7 @@
 import html from './html'
 
 export default class Conversation {
-  constructor (configSelector, playerSelector, typeDelay = [50, 100], animationClass = 'fadeInDown') {
+  constructor (configSelector, playerSelector, typeDelay = [25, 50], animationClass = 'fadeInDown') {
     this.animationClass = animationClass
     this.typeDelay = typeDelay
     this.config = document.querySelector(configSelector)
