@@ -19,6 +19,12 @@ b, strong {
   margin-top: 50px;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 50px;
+}
+
+#player {
+  margin-right: 5px;
+  margin-left: 5px;
 }
 
 @keyframes blink {
@@ -94,4 +100,12 @@ b, strong {
 .blinking-intro::after {
   content: '...';
   animation: blink-full 800ms infinite;
+}
+
+.legacy {
+  position: fixed;
+  bottom: 5px;
+  width: 100%;
+  font-size: 0.8em;
+  text-align: center;
 }

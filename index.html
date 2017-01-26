@@ -8,6 +8,18 @@
   <link rel="stylesheet" type="text/css" href="index.css">
   <script type="text/javascript" src="conversationjs/lib/conversation.js"></script>
   <meta charset="UTF-8">
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-34895030-1']);
+    _gaq.push(['_setDomainName', 'bulte.net']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
 </head>
 <body>
   <div class="conversation">
@@ -38,5 +50,8 @@
     conversation.play()
   </script>
   <!-- <script type="text/javascript" src="index.js"></script> -->
+  <div class="legacy">
+    <a href="legacy">Voir le site classique</a>
+  </div>
 </body>
 </html>
